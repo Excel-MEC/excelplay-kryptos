@@ -102,3 +102,5 @@ ENV/
 
 # Virtualenv files
 server/*
+migrations
+db.sqlite3

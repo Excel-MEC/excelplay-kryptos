@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class User(models.Model):
+    #TODO: User model to be imported from core auth
 	user_id = models.CharField(primary_key=True,max_length=100)
 	username = models.CharField(max_length=100)
 	profile_picture = models.URLField()
@@ -26,10 +27,15 @@ class Level(models.Model):
 		return str(self.level)
 
 class KryptosUser(models.Model):
-    # TODO: Bring user ID from auth
     user_id = models.OneToOneField(User,primary_key=True, on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
     rank = models.IntegerField(default=10000)
+	last_anstime = models.DateTimeField()
 
     def __str__(self):
         return str(self.rank)
+
+
+class SubmittedAnswer(models.Model):
+	kryptosUser = models.ForeignKey(KryptosUser, on_delete=models.CASCADE)
+	answer = models.TextField()
