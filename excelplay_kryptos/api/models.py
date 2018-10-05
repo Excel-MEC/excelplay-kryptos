@@ -30,7 +30,7 @@ class KryptosUser(models.Model):
     user_id = models.OneToOneField(User,primary_key=True, on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
     rank = models.IntegerField(default=10000)
-	last_anstime = models.DateTimeField()
+    last_anstime = models.DateTimeField()
 
     def __str__(self):
         return str(self.rank)
@@ -38,4 +38,4 @@ class KryptosUser(models.Model):
 
 class SubmittedAnswer(models.Model):
 	kryptosUser = models.ForeignKey(KryptosUser, on_delete=models.CASCADE)
-	answer = models.TextField()
+	answers = models.TextField()
