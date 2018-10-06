@@ -8,9 +8,14 @@ class User(models.Model):
 	username = models.CharField(max_length=100)
 	profile_picture = models.URLField()
 	email = models.EmailField()
-	
-	def __str__(self):
+        points = models.IntegerField()
+        
+	def __repr__(self):
 		return self.username
+        
+        class Meta:
+            ordering = ['user_id','points']
+        
 
 class Level(models.Model):
     #options = (
