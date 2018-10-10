@@ -12,15 +12,13 @@ from rest_framework.response import Response
 # Create your views here.
 
 
-def test(request):
-    response = {'success': True}
-    return JsonResponse(response)
+
 
 @api_view(['GET'])
 def ask(request):
 
     # TODO: Fetch user level from DB
-    user_level = 1
+    user_level = 2
     level = Level.objects.filter(level=user_level)[0]
     serializer = LevelSerializer(level)
     return Response(serializer.data)
