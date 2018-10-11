@@ -19,15 +19,14 @@ class User(models.Model):
 
 class Level(models.Model):
 	options = (
-	   ('A', 'Audio'),
 	   ('I', 'Image'),
-	   ('G', 'Gif'),
+	   ('NI','Not Image')
 	)
 	level = models.IntegerField(default =1)
 	answer = models.TextField()
 	source_hint = models.TextField(blank=True,null=True)
 	level_file =  models.FileField(upload_to = 'level_images/',null=True)
-	filetype = models.CharField(max_length = 10,choices=options,default='Audio')
+	filetype = models.CharField(max_length = 10,choices=options,default='Image',blank=True)
 	def __str__(self):
 		return str(self.level)
 
