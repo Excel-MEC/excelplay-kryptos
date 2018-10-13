@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'api.apps.ApiConfig',
     'autofixture',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -138,3 +140,7 @@ SESSION_REDIS = {
     'socket_timeout': 10
 }
 
+CORS_ORIGIN_WHITELIST = (
+        'localhost:8000',
+        #hosting frotend and backend address
+        )
