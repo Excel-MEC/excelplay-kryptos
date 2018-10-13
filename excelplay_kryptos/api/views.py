@@ -1,19 +1,17 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Level, KryptosUser, User
 from django.views.decorators.csrf import csrf_exempt
-from api.serializers import LevelSerializer
-
 
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-# Create your views here.
+from .models import Level, KryptosUser
+from api.serializers import LevelSerializer
+from .decorators import is_logged_in, set_cookies
 
 
-
-
+@is_logged_in
 @api_view(['GET'])
 def ask(request):
 
