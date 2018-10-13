@@ -5,6 +5,7 @@ from django.forms.fields import FileField
 
 class LevelSerializer(serializers.ModelSerializer):
     file = FileField()
+
     class Meta:
         fields = (
             'id',
@@ -16,6 +17,7 @@ class LevelSerializer(serializers.ModelSerializer):
 
 
 class KryptosUserSerializer(serializers.ModelSerializer):
+
     class Meta:
         fields = (
             'id',
