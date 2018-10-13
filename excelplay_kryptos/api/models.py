@@ -13,7 +13,7 @@ class Level(models.Model):
     filetype = models.CharField(max_length = 10,choices=options,default='Image',blank=True)
 	
     def __str__(self):
-	return str(self.level)
+        return str(self.level)
 
 class KryptosUser(models.Model):
     user_id = models.CharField(primary_key=True, max_length=100)
@@ -22,7 +22,7 @@ class KryptosUser(models.Model):
     last_anstime = models.DateTimeField()
 
     def __str__(self):
-	return '<{0}: {1}>'.format(self.user_id, self.rank)
+        return '<{0}: {1}>'.format(self.user_id, self.rank)
 
 
 class SubmittedAnswer(models.Model):
