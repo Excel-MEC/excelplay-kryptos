@@ -3,17 +3,23 @@ from django.db import models
 
 class Level(models.Model):
     options = (
-	('I', 'Image'),
-	('NI','Not Image')
+        ('I', 'Image'),
+        ('NI', 'Not Image')
     )
-    level = models.IntegerField(default =1)
+
+    level = models.IntegerField(default=1)
     answer = models.TextField()
-    source_hint = models.TextField(blank=True,null=True)
-    level_file =  models.FileField(upload_to = 'level_images/',null=True)
-    filetype = models.CharField(max_length = 10,choices=options,default='Image',blank=True)
-	
+    source_hint = models.TextField(blank=True, null=True)
+    level_file = models.FileField(upload_to='level_images/', null=True)
+    filetype = models.CharField(max_length=10,
+                                choices=options,
+                                default='Image',
+                                blank=True
+                                )
+
     def __str__(self):
         return str(self.level)
+
 
 class KryptosUser(models.Model):
     user_id = models.CharField(primary_key=True, max_length=100)
