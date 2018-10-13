@@ -1,0 +1,31 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==2.1.2"
+django-filter = "==2.0.0"
+django-redis-sessions = "==0.6.1"
+djangorestframework = "==3.8.2"
+markdown = "==3.0.1"
+pytz = "==2018.3"
+redis = "==2.10.6"
+"psycopg2-binary" = "==2.7.5"
+gunicorn = "==19.9.0"
+django-autofixture = "==0.12.1"
+
+[dev-packages]
+django-filter = "==2.0.0"
+django-redis-sessions = "==0.6.1"
+djangorestframework = "==3.8.2"
+pytz = "==2018.3"
+redis = "==2.10.6"
+"psycopg2-binary" = "==2.7.5"
+gunicorn = "==19.9.0"
+django-autofixture = "==0.12.1"
+Django = "==2.1.2"
+Markdown = "==3.0.1"
+
+[requires]
+python_version = "3.6"
