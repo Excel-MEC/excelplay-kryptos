@@ -31,7 +31,8 @@ def answer(request):
         level = Level.objects.get(level=kuser.level)
 
         if answer == level.answer:
-            kuser.level += 1
+            # Here we use an F expression : Read more about it in Django docs.
+            kuser.level = F('level') + 1
             kuser.save()
             response = {'answer': 'Correct'}
 
