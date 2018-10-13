@@ -2,29 +2,33 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Level, KryptosUser, User
 from django.views.decorators.csrf import csrf_exempt
+from api.serializers import LevelSerializer
 
 
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 
 
-def test(request):
-    response = {'success': True}
-    return JsonResponse(response)
+
 
 @api_view(['GET'])
 def ask(request):
-    
+
     # TODO: Fetch user level from DB
-    user_level = 1
+    user_level = 2
     level = Level.objects.filter(level=user_level)[0]
-    response = {
-        'level': user_level,
-        'source_hint': level.source_hint
-    }
-    return JsonResponse(response)
+    serializer = LevelSerializer(level)
+    return Response(serializer.data)
+
+    # response = {
+    #     'level': user_level,
+    #     'source_hint': level.source_hint,
+    #     'level_file': level.level_file,
+    # }
+    # return JsonResponse(response)
 
 @csrf_exempt
 @api_view(['POST'])
@@ -45,5 +49,5 @@ def answer(request):
     except Exception as e:
         print (e)
         response = {'error': 'User not found'}
-    finally:  
+    finally:
         return JsonResponse(response)
