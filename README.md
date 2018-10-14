@@ -1,6 +1,8 @@
 # ExcelPlay Kryptos
 Follow the steps below to start the API server:
   - Primary requirements (These need to be preinstalled)
+    - redis
+    - postgresql
     - pip
     - virtualenv
   - Create a virtual environment and activate it
