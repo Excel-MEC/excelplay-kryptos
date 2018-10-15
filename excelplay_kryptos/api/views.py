@@ -56,7 +56,7 @@ def leaderboard():
         dict['rank']=rank
         rank+=1
         data.append(dict)
-    return {"data":"test passed"}
+    return data
     # except:
     #     resp = {'Error': 'Internal Server Error'}
     #     return "JsonResponse(resp, status=500)"
