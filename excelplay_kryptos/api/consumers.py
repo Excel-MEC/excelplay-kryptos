@@ -7,6 +7,6 @@ from .views import leaderboard
 class updateLeaderboard(AsyncJsonWebsocketConsumer):
 	async def connect(self):
 		await self.accept()
-		while 5:
-			await asyncio.sleep(1)
+		while 1:
+			await asyncio.sleep(5)
 			await self.send_json(leaderboard())

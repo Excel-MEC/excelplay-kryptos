@@ -5,6 +5,6 @@ from api.consumers import updateLeaderboard
 
 application = ProtocolTypeRouter({
 		"websocket":URLRouter([
-				path("ws/leaderboard", updateLeaderboard)
+				path("ws/leaderboard/", updateLeaderboard)
 			])
 	})
