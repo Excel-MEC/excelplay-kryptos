@@ -44,3 +44,19 @@ def answer(request):
     except Exception as e:
         resp = {'Error': 'Internal Server Error'}
         return JsonResponse(resp, status=500)
+
+def leaderboard():
+    try:
+        data=[]
+        kryptosUsers=KryptosUser.objects.all().order_by('-level','last_anstime')
+        rank=1
+        for i in kryptosUsers:
+            dict={}
+            dict['user_id']=i.user_id
+            dict['rank']=rank
+            rank+=1
+            data.append(dict)
+        return data
+    except:
+        resp = {'Error': 'Internal Server Error'}
+        return JsonResponse(resp, status=500)
