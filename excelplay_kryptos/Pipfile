@@ -15,6 +15,9 @@ redis = "==2.10.6"
 gunicorn = "==19.9.0"
 django-autofixture = "==0.12.1"
 django-cors-headers = "*"
+pipfile = "*"
+channels = "*"
+channels-redis = "*"
 
 [dev-packages]
 django-filter = "==2.0.0"
