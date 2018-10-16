@@ -10,36 +10,13 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
-aioredis==1.1.0
-asgiref==2.3.2
-async-timeout==3.0.1
-attrs==18.2.0
-autobahn==18.9.2
-automat==0.7.0
-channels-redis==2.3.0
-channels==2.1.3
-constantly==15.1.0
-daphne==2.2.2
 django-autofixture==0.12.1
-django-cors-headers==2.4.0
 django-filter==2.0.0
 django-redis-sessions==0.6.1
 django==2.1.2
 djangorestframework==3.8.2
 gunicorn==19.9.0
-hiredis==0.2.0
-hyperlink==18.0.0
-idna==2.7
-incremental==17.5.0
 markdown==3.0.1
-msgpack==0.5.6
-pipfile==0.0.2
 psycopg2-binary==2.7.5
-pyhamcrest==1.9.0
 pytz==2018.3
 redis==2.10.6
-six==1.11.0
-toml==0.10.0
-twisted==18.9.0
-txaio==18.8.1
-zope.interface==4.5.0
