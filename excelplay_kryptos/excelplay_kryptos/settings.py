@@ -22,8 +22,7 @@ DEBUG = True
 
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
 #SECRET_KEY = env('SECRET_KEY')
-SECRET_KEY = '=(%a=lx5p4w8+@-(1njvv@rj25+-ws6yb3a%)6$ho5+&b%$2_7'
-
+SECRET_KEY = 'PLAYON'
 ALLOWED_HOSTS = ['35.200.222.240']
 
 
