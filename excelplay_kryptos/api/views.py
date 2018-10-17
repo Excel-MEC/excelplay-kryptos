@@ -71,12 +71,16 @@ def leaderboard(request):
 @is_logged_in
 def myrank(request):
     if request.method == 'GET':
-        user=request.session.get('user',False)
-        if user:
-            user_rank=KryptosUser.objects.get(user_id=user).rank
-            return JsonResponse({'rank':user_rank})
-        else:
-            return JsonResponse({'Error':'user id not in session'})
+        try:
+            user = request.session.get('user', False)
+            if user:
+                rank = KryptosUser.objects.get(user_id = user).rank
+                return JsonResponse({'rank': rank})
+            else:
+                return JsonResponse({'Error': 'User not logged in'}, status=403)
+
+        except:
+            return JsonResponse({'Error': 'Internal Server Error'}, status=500)
     else:
         return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
 
