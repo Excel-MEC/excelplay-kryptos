@@ -32,7 +32,7 @@ class KryptosUser(models.Model):
 
     class Meta:
         ordering = ['-level', 'last_anstime']
-        verbose_plural_name = 'Kryptos Users'
+        verbose_name_plural = 'Kryptos Users'
 
 
 class SubmittedAnswer(models.Model):
