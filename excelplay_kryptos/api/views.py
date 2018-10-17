@@ -68,6 +68,19 @@ def leaderboard(request):
     else:
         return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
 
+@is_logged_in
+def myrank(request):
+    if request.method == 'GET':
+        user=request.session.get('user',False)
+        if user:
+            user_rank=KryptosUser.objects.get(user_id=user).rank
+            return JsonResponse({'rank':user_rank})
+        else:
+            return JsonResponse({'Error':'user id not in session'})
+    else:
+        return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
+
+
 
 def test_session(request):
     if request.method == "GET":
