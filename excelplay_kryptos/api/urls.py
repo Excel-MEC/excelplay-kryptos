@@ -8,4 +8,4 @@ urlpatterns = [
     path('ranklist', views.leaderboard),
     path('test', views.test_session),
     path('myrank', views.myrank)
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
