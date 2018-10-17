@@ -30,6 +30,10 @@ class KryptosUser(models.Model):
     def __str__(self):
         return '<{0}: {1}>'.format(self.user_id, self.rank)
 
+    class Meta:
+        ordering = ['-level', 'last_anstime']
+        verbose_plural_name = 'Kryptos Users'
+
 
 class SubmittedAnswer(models.Model):
     kryptosUser = models.ForeignKey(KryptosUser, on_delete=models.CASCADE)
