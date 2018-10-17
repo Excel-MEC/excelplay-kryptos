@@ -134,7 +134,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS = {
-    'host': 'localhost',
+    'host': 'redis',
     'port': 6379,
     'db': 0,
     'prefix': 'session',
@@ -142,6 +142,6 @@ SESSION_REDIS = {
 }
 
 CORS_ORIGIN_WHITELIST = (
-        'localhost:8000',
+        'localhost:4200',
         #hosting frotend and backend address
         )
