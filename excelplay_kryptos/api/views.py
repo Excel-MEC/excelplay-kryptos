@@ -65,5 +65,10 @@ def leaderboard():
             resp = {'Error': 'Internal Server Error'}
             return JsonResponse(resp, status=500)
 
-    except:
+    else:
         return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
+
+
+def test_session():
+    if request.method == "GET":
+        return JsonResponse({'Success': request.session.get('test', False)})
