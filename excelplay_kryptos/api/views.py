@@ -45,7 +45,7 @@ def answer(request):
         return JsonResponse(resp, status=500)
 
 
-def leaderboard():
+def leaderboard(request):
     if request.method == 'GET':
         try:
             data = []
@@ -69,6 +69,6 @@ def leaderboard():
         return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
 
 
-def test_session():
+def test_session(request):
     if request.method == "GET":
         return JsonResponse({'Success': request.session.get('test', False)})
