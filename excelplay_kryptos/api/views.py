@@ -8,7 +8,6 @@ from api.serializers import LevelSerializer
 from .decorators import is_logged_in, set_cookies
 
 
-@set_cookies
 @is_logged_in
 def ask(request):
 
@@ -45,18 +44,26 @@ def answer(request):
         resp = {'Error': 'Internal Server Error'}
         return JsonResponse(resp, status=500)
 
+
 def leaderboard():
-    # try:
-    data=[]
-    kryptosUsers=KryptosUser.objects.all().order_by('-level','last_anstime')
-    rank=1
-    for i in kryptosUsers:
-        dict={}
-        dict['user_id']=i.user_id
-        dict['rank']=rank
-        rank+=1
-        data.append(dict)
-    return data
-    # except:
-    #     resp = {'Error': 'Internal Server Error'}
-    #     return "JsonResponse(resp, status=500)"
+    if request.method == 'GET':
+        try:
+            data = []
+            kusers = KryptosUser.objects.all()
+            rank = 1
+            
+            for kuser in kusers:
+                dict={}
+                dict['user_id'] = kuser.user_id
+                dict['rank'] = rank
+                rank += 1
+                data.append(dict)
+            
+            return JsonResponse({'data': data})
+        
+        except:
+            resp = {'Error': 'Internal Server Error'}
+            return JsonResponse(resp, status=500)
+
+    except:
+        return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
