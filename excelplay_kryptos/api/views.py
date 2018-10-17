@@ -46,7 +46,7 @@ def answer(request):
 
 
 def leaderboard():
-    if request.method == 'GET'
+    if request.method == 'GET':
         try:
             data = []
             kusers = KryptosUser.objects.all()
