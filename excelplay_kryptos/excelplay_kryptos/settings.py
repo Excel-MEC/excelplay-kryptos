@@ -15,6 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+from secret import SECRET
 
 # False if not in os.environ
 #DEBUG = env('DEBUG')
@@ -22,7 +23,9 @@ DEBUG = False
 
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
 #SECRET_KEY = env('SECRET_KEY')
-SECRET_KEY = os.environ.get('secret_key')
+
+SECRET_KEY = SECRET
+
 ALLOWED_HOSTS = ['35.200.222.240', 'play-demo.excelmec.org','play.excelmec.org']
 
 
