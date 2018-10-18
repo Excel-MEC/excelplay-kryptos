@@ -104,3 +104,7 @@ ENV/
 server/*
 migrations
 db.sqlite3
+
+# Static files
+excelplay_kryptos/static
+excelplay_kryptos/media
