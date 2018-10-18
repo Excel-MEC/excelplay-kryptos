@@ -9,6 +9,7 @@ from .decorators import is_logged_in, set_cookies
 
 
 @is_logged_in
+@api_view(['GET'])
 def ask(request):
 
     user = request.session['user']
@@ -44,7 +45,7 @@ def answer(request):
         resp = {'Error': 'Internal Server Error'}
         return JsonResponse(resp, status=500)
 
-
+@api_view(['GET'])
 def leaderboard(request):
     if request.method == 'GET':
         try:
@@ -69,6 +70,7 @@ def leaderboard(request):
         return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
 
 @is_logged_in
+@api_view(['GET'])
 def myrank(request):
     if request.method == 'GET':
         try:
