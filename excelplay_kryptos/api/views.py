@@ -9,6 +9,9 @@ from api.serializers import LevelSerializer
 from .decorators import is_logged_in, set_cookies
 
 from datetime import datetime
+from redis_leaderboard.wrapper import RedisLeaderboard
+
+rdb = RedisLeaderboard('db', 6379, 0)
 
 @is_logged_in
 @api_view(['GET'])
@@ -17,6 +20,10 @@ def ask(request):
     user = request.session['user']
     kuser, created = KryptosUser.objects.get_or_create(user_id=user)
     # TODO: Send message to websocket on new user.
+
+    if created:
+        rdb.add('kryptos', user, 0)
+
     level = Level.objects.filter(level=kuser.level)[0]
     serializer = LevelSerializer(level)
     return Response(serializer.data)
@@ -33,6 +40,10 @@ def answer(request):
         level = Level.objects.get(level=kuser.level)
 
         if answer == level.answer:
+
+            score = kuser.level + 1
+            rdb.add ('kryptos', user, score)
+
             # Here we use an F expression : Read more about it in Django docs.
             kuser.level = F('level') + 1
             kuser.last_anstime = datetime.now()
@@ -48,7 +59,7 @@ def answer(request):
         resp = {'Error': 'Internal Server Error'}
         return JsonResponse(resp, status=500)
 
-
+'''
 @is_logged_in
 @api_view(['GET'])
 def leaderboard(request):
@@ -85,4 +96,4 @@ def myrank(request):
 
     except:
         return JsonResponse({'Error': 'Internal Server Error'}, status=500)
-
+'''
