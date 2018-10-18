@@ -5,4 +5,5 @@ FROM python:3.6
  WORKDIR /excelplay/excelplay_kryptos
  ADD requirements.txt /excelplay/excelplay_kryptos
  RUN pip install -r requirements.txt
+ RUN pip install git+git://github.com/traintraveler/redis-leaderboard.git
  ADD . /excelplay/excelplay_kryptos
