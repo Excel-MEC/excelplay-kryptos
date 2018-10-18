@@ -10,8 +10,9 @@ class LevelSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'level',
-            'answer',
+            'level_file',
             'source_hint',
+            'filetype'
         )
         model = Level
 
