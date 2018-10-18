@@ -23,7 +23,7 @@ def ask(request):
 @is_logged_in
 def answer(request):
     if request.method == "GET":
-        answer = request.data['answer']
+        answer = request.POST['answer']
 
         try:
             user = request.session['user']
