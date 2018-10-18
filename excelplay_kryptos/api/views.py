@@ -11,7 +11,7 @@ from .decorators import is_logged_in, set_cookies
 from datetime import datetime
 from redis_leaderboard.wrapper import RedisLeaderboard
 
-rdb = RedisLeaderboard('db', 6379, 0)
+rdb = RedisLeaderboard('redis', 6379, 0)
 
 @is_logged_in
 @api_view(['GET'])
