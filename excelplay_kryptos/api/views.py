@@ -8,8 +8,10 @@ from .models import Level, KryptosUser
 from api.serializers import LevelSerializer
 from .decorators import is_logged_in, set_cookies
 
+from datetime import datetime
 
 @is_logged_in
+@api_view(['GET'])
 def ask(request):
 
     user = request.session['user']
@@ -21,71 +23,66 @@ def ask(request):
 
 
 @is_logged_in
+@api_view(['POST'])
 def answer(request):
-    if request.method == "GET":
-        answer = request.POST['answer']
+    answer = request.POST['answer']
 
-        try:
-            user = request.session['user']
-            kuser = KryptosUser.objects.get(user_id=user)
-            level = Level.objects.get(level=kuser.level)
+    try:
+        user = request.session['user']
+        kuser = KryptosUser.objects.get(user_id=user)
+        level = Level.objects.get(level=kuser.level)
 
-            if answer == level.answer:
-                # Here we use an F expression : Read more about it in Django docs.
-                kuser.level = F('level') + 1
-                kuser.save()
-                response = {'answer': 'Correct'}
+        if answer == level.answer:
+            # Here we use an F expression : Read more about it in Django docs.
+            kuser.level = F('level') + 1
+            kuser.last_anstime = datetime.now()
+            kuser.save()
+            response = {'answer': 'Correct'}
 
-            else:
-                response = {'answer': 'Wrong'}
+        else:
+            response = {'answer': 'Wrong'}
 
-            return JsonResponse(response)
+        return JsonResponse(response)
 
-        except Exception as e:
-            resp = {'Error': 'Internal Server Error'}
-            return JsonResponse(resp, status=500)
-    else:
-        return JsonResponse({"Error: Method not allowed"}, status=405)
-
-
-def leaderboard(request):
-    if request.method == 'GET':
-        try:
-            data = []
-            kusers = KryptosUser.objects.all()
-            rank = 1
-            
-            for kuser in kusers:
-                dict={}
-                dict['user_id'] = kuser.user_id
-                dict['rank'] = rank
-                rank += 1
-                data.append(dict)
-            
-            return JsonResponse({'data': data})
-        
-        except:
-            resp = {'Error': 'Internal Server Error'}
-            return JsonResponse(resp, status=500)
-
-    else:
-        return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
+    except Exception as e:
+        resp = {'Error': 'Internal Server Error'}
+        return JsonResponse(resp, status=500)
 
 
 @is_logged_in
+@api_view(['GET'])
+def leaderboard(request):
+    try:
+        data = []
+        kusers = KryptosUser.objects.all()
+        rank = 1
+            
+        for kuser in kusers:
+            dict={}
+            dict['user_id'] = kuser.user_id
+            dict['rank'] = rank
+            rank += 1
+            data.append(dict)
+            
+            return JsonResponse({'data': data})
+        
+    except:
+        resp = {'Error': 'Internal Server Error'}
+        return JsonResponse(resp, status=500)
+
+
+
+@is_logged_in
+@api_view(['GET'])
 def myrank(request):
-    if request.method == 'GET':
-        try:
-            user = request.session.get('user', False)
-            if user:
-                rank = KryptosUser.objects.get(user_id = user).rank
-                return JsonResponse({'rank': rank})
-            else:
-                return JsonResponse({'Error': 'User not logged in'}, status=403)
+    try:
+        user = request.session.get('user', False)
+        if user:
+            rank = KryptosUser.objects.get(user_id = user).rank
+            return JsonResponse({'rank': rank})
+        else:
+            return JsonResponse({'Error': 'User not logged in'}, status=403)
 
-        except:
-            return JsonResponse({'Error': 'Internal Server Error'}, status=500)
-    else:
-        return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
-
+    except:
+        return JsonResponse({'Error': 'Internal Server Error'}, status=500)
 
