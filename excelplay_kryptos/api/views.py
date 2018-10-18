@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.db.models import F
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -9,7 +10,6 @@ from .decorators import is_logged_in, set_cookies
 
 
 @is_logged_in
-@api_view(['GET'])
 def ask(request):
 
     user = request.session['user']
@@ -21,31 +21,33 @@ def ask(request):
 
 
 @is_logged_in
-@api_view(['POST'])
 def answer(request):
-    answer = request.data['answer']
+    if request.method == "GET":
+        answer = request.data['answer']
 
-    try:
-        user = request.session['user']
-        kuser = KryptosUser.objects.get(user_id=user)
-        level = Level.objects.get(level=kuser.level)
+        try:
+            user = request.session['user']
+            kuser = KryptosUser.objects.get(user_id=user)
+            level = Level.objects.get(level=kuser.level)
 
-        if answer == level.answer:
-            # Here we use an F expression : Read more about it in Django docs.
-            kuser.level = F('level') + 1
-            kuser.save()
-            response = {'answer': 'Correct'}
+            if answer == level.answer:
+                # Here we use an F expression : Read more about it in Django docs.
+                kuser.level = F('level') + 1
+                kuser.save()
+                response = {'answer': 'Correct'}
 
-        else:
-            response = {'answer': 'Wrong'}
+            else:
+                response = {'answer': 'Wrong'}
 
-        return JsonResponse(response)
+            return JsonResponse(response)
 
-    except Exception as e:
-        resp = {'Error': 'Internal Server Error'}
-        return JsonResponse(resp, status=500)
+        except Exception as e:
+            resp = {'Error': 'Internal Server Error'}
+            return JsonResponse(resp, status=500)
+    else:
+        return JsonResponse({"Error: Method not allowed"}, status=405)
 
-@api_view(['GET'])
+
 def leaderboard(request):
     if request.method == 'GET':
         try:
@@ -69,8 +71,8 @@ def leaderboard(request):
     else:
         return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
 
+
 @is_logged_in
-@api_view(['GET'])
 def myrank(request):
     if request.method == 'GET':
         try:
@@ -87,7 +89,3 @@ def myrank(request):
         return JsonResponse({'Error': 'Method Not Allowed'}, status=405)
 
 
-
-def test_session(request):
-    if request.method == "GET":
-        return JsonResponse({'Success': request.session.get('test', False)})
