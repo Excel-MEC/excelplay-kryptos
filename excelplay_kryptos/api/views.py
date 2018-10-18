@@ -22,7 +22,7 @@ def ask(request):
     # TODO: Send message to websocket on new user.
 
     if created:
-        rdb.add('kryptos', user, 0)
+        rdb.add('kryptos', user, 1)
 
     level = Level.objects.filter(level=kuser.level)[0]
     serializer = LevelSerializer(level)
