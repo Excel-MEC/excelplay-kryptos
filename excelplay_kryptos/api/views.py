@@ -4,7 +4,7 @@ from django.db.models import F
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .models import Level, KryptosUser
+from .models import Level, KryptosUser, AnswerLog
 from api.serializers import LevelSerializer
 from .decorators import is_logged_in, set_cookies
 
@@ -38,6 +38,8 @@ def answer(request):
         user = request.session['user']
         kuser = KryptosUser.objects.get(user_id=user)
         level = Level.objects.get(level=kuser.level)
+
+        AnswerLog.objects.create(user_id=user, anstime=datetime.now(), level=level, answer=answer)
 
         if answer == level.answer:
 

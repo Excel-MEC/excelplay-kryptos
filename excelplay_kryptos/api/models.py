@@ -20,6 +20,18 @@ class Level(models.Model):
     def __str__(self):
         return str(self.level)
 
+class AnswerLog(models.Model):
+    user_id = models.CharField(blank=True,max_length=100)
+    level = models.IntegerField(default=1)
+    answer = models.TextField()
+    anstime = models.DateTimeField(null=True)
+
+    def __str__(self):
+        return '%-30s| %10s | %10s | %10s '%(self.user_id,
+            self.answer,
+            self.level,
+            self.anstime,
+        )
 
 class KryptosUser(models.Model):
     user_id = models.CharField(primary_key=True, max_length=100)
