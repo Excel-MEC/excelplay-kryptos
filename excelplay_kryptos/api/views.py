@@ -39,8 +39,11 @@ def answer(request):
         kuser = KryptosUser.objects.get(user_id=user)
         level = Level.objects.get(level=kuser.level)
 
-        AnswerLog.objects.create(user_id=user, anstime=datetime.now(), level=level, answer=answer)
-
+        try:
+            AnswerLog.objects.create(user_id=user, anstime=datetime.now(), level=level, answer=answer)
+        except:
+            pass
+            
         if answer == level.answer:
 
             score = kuser.level + 1
