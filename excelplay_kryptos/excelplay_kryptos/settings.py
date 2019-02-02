@@ -25,8 +25,9 @@ DEBUG = False
 #SECRET_KEY = env('SECRET_KEY')
 
 SECRET_KEY = secretkey
+#SECRET_KEY='excel2k19'
 
-ALLOWED_HOSTS = ['35.200.222.240', 'play-demo.excelmec.org','play.excelmec.org']
+ALLOWED_HOSTS = ['35.200.222.240', 'play-demo.excelmec.org','play.excelmec.org','localhost']
 
 
 # Application definition

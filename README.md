@@ -1,7 +1,7 @@
 # ExcelPlay Kryptos
 Follow the steps below to start the API server:
   - Primary requirements (These need to be preinstalled)
-    - redis
+    - redis(production only)
     - postgresql
     - pip
     - virtualenv
@@ -12,6 +12,7 @@ Follow the steps below to start the API server:
     ```
   - Install the requirements
     ```sh
+    $ cd excelplay_krypts/
     $ pip install -r requirements.txt
     ```
   - Run the dev server
@@ -21,3 +22,4 @@ Follow the steps below to start the API server:
     $ python manage.py createsuperuser
     $ python manage.py runserver
     ```
+ - If you are setting up a development server uncomment appropriate SECRET KEY SETTING
