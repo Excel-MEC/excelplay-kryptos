@@ -40,6 +40,6 @@ pytz==2018.3
 redis==2.10.6
 six==1.11.0
 toml==0.10.0
-twisted==18.9.0
+twisted>=19.7
 txaio==18.8.1
 zope.interface==4.5.0
