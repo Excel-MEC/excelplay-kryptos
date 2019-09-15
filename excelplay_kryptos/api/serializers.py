@@ -12,6 +12,9 @@ class LevelSerializer(serializers.ModelSerializer):
             'level',
             'level_file',
             'source_hint',
+            'hint1',
+            'hint2',
+            'hint3',
             'filetype'
         )
         model = Level
