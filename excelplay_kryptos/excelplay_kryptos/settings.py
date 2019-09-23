@@ -30,6 +30,8 @@ SECRET_KEY = secretkey
 ALLOWED_HOSTS = ['35.200.222.240', 'play-demo.excelmec.org','play.excelmec.org','localhost']
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
 # Application definition
 
 INSTALLED_APPS = [
