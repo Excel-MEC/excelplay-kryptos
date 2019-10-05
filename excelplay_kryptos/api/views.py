@@ -30,9 +30,9 @@ def ask(request):
 
 
 @is_logged_in
-@api_view(['POST'])
+@api_view(['GET'])
 def answer(request):
-    answer = request.POST['answer']
+    answer = request.GET['answer']
 
     try:
         user = request.session['user']
