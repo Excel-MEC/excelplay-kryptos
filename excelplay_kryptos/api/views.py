@@ -24,9 +24,13 @@ def ask(request):
     if created:
         rdb.add('kryptos', user, 1)
 
-    level = Level.objects.filter(level=kuser.level)[0]
-    serializer = LevelSerializer(level)
-    return Response(serializer.data)
+    level = Level.objects.filter(level=kuser.level)
+
+    if len(level) > 0:
+        serializer = LevelSerializer(level[0])
+        return Response(serializer.data)
+    else:
+        return JsonResponse({'completed': True})
 
 
 @is_logged_in
