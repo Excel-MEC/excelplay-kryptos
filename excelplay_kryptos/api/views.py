@@ -39,10 +39,13 @@ def answer(request):
         kuser = KryptosUser.objects.get(user_id=user)
         level = Level.objects.get(level=kuser.level)
 
-        try:
-            AnswerLog.objects.create(user_id=user, anstime=datetime.now(), level=level, answer=answer)
-        except:
-            pass
+
+        AnswerLog.objects.create(
+            user_id=user,
+            anstime=datetime.now(),
+            level=level.level,
+            answer=answer
+        )
             
         if answer == level.answer:
 
