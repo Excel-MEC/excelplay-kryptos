@@ -27,7 +27,7 @@ DEBUG = False
 SECRET_KEY = secretkey
 #SECRET_KEY='excel2k19'
 
-ALLOWED_HOSTS = ['35.200.222.240', 'play-demo.excelmec.org','play.excelmec.org','localhost']
+ALLOWED_HOSTS = ['35.200.222.240', 'play-demo.excelmec.org','play.excelmec.org','localhost', '*']
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
