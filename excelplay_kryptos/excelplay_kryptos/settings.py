@@ -133,6 +133,7 @@ USE_TZ = True
 
 STATIC_URL = '/django_static/'
 MEDIA_URL = '/kryptos_media/media/'
+MEDIA_ROOT = 'media/'
 
 # Session settings
 
