@@ -132,7 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/django_static/'
-MEDIA_URL = '/kryptos_media/'
+MEDIA_URL = '/kryptos_media/media/'
 
 # Session settings
 
