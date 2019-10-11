@@ -16,13 +16,14 @@ class HintsInline(admin.StackedInline):
 
 class LevelAdmin(admin.ModelAdmin):
     inlines = (HintsInline,)
-    list_display = ('level', 'answer', 'source_hint',)
+    list_display = ('level', 'source_hint',)
 
 class AnswerLogAdmin(admin.ModelAdmin):
     list_display = ('user_id', 'level', 'answer', 'anstime')
 
 class KryptosUserAdmin(admin.ModelAdmin):
     list_display = ('user_id', 'level', 'last_anstime')
+    search_fields = ('user_id', 'level')
 
 
 admin.site.register(Level, LevelAdmin)
