@@ -26,5 +26,5 @@ class KryptosUserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Level, LevelAdmin)
-admin.site.register(KryptosUser)
+admin.site.register(KryptosUser, KryptosUserAdmin)
 admin.site.register(AnswerLog, AnswerLogAdmin)
