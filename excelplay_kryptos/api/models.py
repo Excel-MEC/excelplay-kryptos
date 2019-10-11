@@ -20,6 +20,9 @@ class Level(models.Model):
     def __str__(self):
         return str(self.level)
 
+    class Meta:
+        ordering = ['-level']
+
 class AnswerLog(models.Model):
     user_id = models.CharField(blank=True,max_length=100)
     level = models.IntegerField(default=1)
