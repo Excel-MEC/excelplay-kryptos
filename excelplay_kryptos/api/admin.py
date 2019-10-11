@@ -20,10 +20,11 @@ class LevelAdmin(admin.ModelAdmin):
 
 class AnswerLogAdmin(admin.ModelAdmin):
     list_display = ('user_id', 'level', 'answer', 'anstime')
+    search_fields = ('user_id')
 
 class KryptosUserAdmin(admin.ModelAdmin):
     list_display = ('user_id', 'level', 'last_anstime')
-    search_fields = ('user_id', 'level')
+    search_fields = ('user_id')
 
 
 admin.site.register(Level, LevelAdmin)
