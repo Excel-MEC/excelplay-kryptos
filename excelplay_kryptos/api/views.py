@@ -51,7 +51,7 @@ def answer(request):
             answer=answer
         )
             
-        if answer == level.answer:
+        if answer.lower() == level.answer:
 
             score = kuser.level + 1
             rdb.add ('kryptos', user, score)
